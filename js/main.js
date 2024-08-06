@@ -2,34 +2,64 @@ const listaPokemon = document.querySelector("#listaPokemon");
 const botonesHeader = document.querySelectorAll(".btn-header");
 let URL = "https://pokeapi.co/api/v2/pokemon/";
 
+// Definimos los colores asociados a cada tipo de Pokémon
+const typeColors = {
+    bug: '#A8B820',
+    dark: '#705848',
+    dragon: '#7038F8',
+    electric: '#F8D030',
+    fairy: '#EE99AC',
+    fighting: '#C03028',
+    fire: '#F08030',
+    flying: '#A890F0',
+    ghost: '#705898',
+    grass: '#78C850',
+    ground: '#E0C068',
+    ice: '#98D8D8',
+    normal: '#A8A878',
+    poison: '#A040A0',
+    psychic: '#F85888',
+    rock: '#B8A038',
+    steel: '#B8B8D0',
+    water: '#6890F0'
+};
+
+// Aplicar colores correspondientes a los botones de filtrado
+botonesHeader.forEach(button => {
+    const tipo = button.id.replace('ver-', '');
+    if (typeColors[tipo]) {
+        button.style.backgroundColor = typeColors[tipo];
+    } else {
+        button.style.backgroundColor = '#ccc'; // Color default para "ver-todos"
+    }
+});
+
 for (let i = 1; i <= 151; i++) {
     fetch(URL + i)
         .then((response) => response.json())
-        .then(data => mostrarPokemon(data))
+        .then(data => mostrarPokemon(data));
 }
 
-function mostrarPokemon(data){
-    let tipos = data.types.map((type) => `<p class="${type.type.name} tipo">${type.type.name}</p>`);
-    tipos = tipos.join('');
+function mostrarPokemon(data) {
+    let tipos = data.types.map((type) => {
+        const tipoClass = `type-${type.type.name}`;
+        console.log(`Tipo: ${type.type.name}, Clase: ${tipoClass}`); // Depuración
+        return `<p class="${tipoClass} tipo">${type.type.name}</p>`;
+    }).join('');
 
-    let pokeId = data.id.toString();
-    if (pokeId.length === 1) {
-        pokeId = "00" + pokeId;
-    } else if (pokeId.length === 2) {
-        pokeId = "0" + pokeId;
-    }
-
+    // Obtener el color principal del primer tipo del Pokémon
+    const colorPrincipal = typeColors[data.types[0].type.name];
 
     const div = document.createElement("div");
     div.classList.add("pokemon");
     div.innerHTML = `
+    <div class="pokemon-background" style="background-color: ${colorPrincipal};"></div>
     <p class="pokemon-id-back">#${data.id}</p>
     <div class="pokemon-img">
         <img src="${data.sprites.other["official-artwork"].front_default}" alt="">
     </div>
     <div class="pokemon-info">
         <div class="nombre-contenedor">
-        <p class="pokemon-id">#${pokeId}</p>
             <h2 class="pokemon-nombre">${data.name}</h2>
         </div>
         <div class="pokemon-tipos">
@@ -39,15 +69,15 @@ function mostrarPokemon(data){
             <p class="stat">${data.height}M</p>
             <p class="stat">${data.weight}KG</p>
         </div>
-    </div>
-</div>`;
+    </div>`;
 
     listaPokemon.append(div);
 }
 
 
+// Función para los botones de filtrado
 botonesHeader.forEach(boton => boton.addEventListener("click", (event) => {
-    const botonId = event.currentTarget.id;
+    const botonId = event.currentTarget.id.replace('ver-', '');
 
     listaPokemon.innerHTML = "";
 
@@ -55,8 +85,7 @@ botonesHeader.forEach(boton => boton.addEventListener("click", (event) => {
         fetch(URL + i)
             .then((response) => response.json())
             .then(data => {
-
-                if(botonId === "ver-todos") {
+                if(botonId === "todos") {
                     mostrarPokemon(data);
                 } else {
                     const tipos = data.types.map(type => type.type.name);
@@ -64,7 +93,36 @@ botonesHeader.forEach(boton => boton.addEventListener("click", (event) => {
                         mostrarPokemon(data);
                     }
                 }
-
             })
     }
-}))
+}));
+
+const searchBar = document.querySelector("#searchBar");
+
+searchBar.addEventListener("input", function() {
+    const searchTerm = searchBar.value.toLowerCase();
+    const pokemonCards = document.querySelectorAll(".pokemon");
+
+    pokemonCards.forEach(card => {
+        const pokemonName = card.querySelector(".pokemon-nombre").textContent.toLowerCase();
+        if (pokemonName.includes(searchTerm)) {
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
+    });
+});
+
+
+const toggleButton = document.querySelector("#toggleMode");
+const body = document.body;
+
+toggleButton.addEventListener("click", function() {
+    body.classList.toggle("dark-mode");
+
+    if (body.classList.contains("dark-mode")) {
+        toggleButton.textContent = "Modo Claro";
+    } else {
+        toggleButton.textContent = "Modo Oscuro";
+    }
+});
