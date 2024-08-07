@@ -98,24 +98,27 @@ body {
 }
 
 header {
+    width: 100%;
+    padding: 1rem;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-block: 1rem;
+    justify-content: space-between;
+    align-items: center; /* Alinea los elementos verticalmente al centro */
+    position: sticky;
+    margin-bottom: 4%;
     box-shadow: 0 0 2rem -1rem rgba(0, 0, 0, .5);
 }
 
 .nav {
-    display:flex;
-    flex-direction:column;
+    display: flex;
+    flex-direction: column;
     gap: 1rem;
-    justify-content: space-between;
     padding-inline: 2rem;
     max-width: 1000px;
     margin: 0 auto;
+    flex-grow: 1; /* Permite que el nav crezca para ocupar el espacio disponible */
 }
 
-.nav img{
+.nav img {
     width: 100px;
 }
 
@@ -140,14 +143,29 @@ header {
     opacity: 0.8;
 }
 
-#searchBar{
+#searchBar {
     padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 0.5rem;
     width: 100%;
-    max-width: 300px; /* Ajusta el ancho máximo según sea necesario */
-    margin: 0 auto; /* Centra la barra de búsqueda horizontalmente */
-    display: block; /
+    max-width: 300px;
+    margin: 0 auto;
+    display: block;
+}
+
+#noResults {
+    color: #f00; /* Color del texto para que sea visible */
+    font-weight: bold;
+    text-align: center; /* Centrar el mensaje */
+}
+
+#toggleMode {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: var(--clr-gray);
+    color: #000;
+    cursor: pointer;
 }
 
 main{
@@ -180,7 +198,7 @@ main{
     background-color: var(--clr-white);
     box-shadow: 0 0 3rem -1rem rgba(0, 0, 0, .25);
     padding-block: 1rem;
-    text-transform: uppercase;
+    text-transform:capitalize;
     overflow: hidden;
     width: 100%;
     height: 100%;

@@ -9,8 +9,10 @@
 <body>
     <header>
         <nav class="nav">
-            <img src="./img/pokedex-logo.png" alt="Logo Pokédex">
-            <button id="toggleMode">Modo Oscuro</button>
+            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                <img src="./img/pokedex-logo.png" alt="Logo Pokédex">
+                <button id="toggleMode">Modo Oscuro</button>
+            </div>
             <ul class="nav-list">
                 <li class="nav-item"><button class="btn btn-header" id="ver-todos">Ver todos</button></li> 
                 <li class="nav-item"><button class="btn btn-header normal" id="normal">Normal</button></li>
@@ -35,9 +37,11 @@
             <input type="text" id="searchBar" class="search" placeholder="Buscar Pokémon...">
         </nav>
     </header>
+    
     <main>
         <div id="todos">
             <div class="pokemon-todos" id="listaPokemon">
+                <div id="noResults" style="display: none;">Oops, no se han encontrado resultados</div>
                 <!-- <div class="pokemon">
                     <p class="pokemon-id-back">#025</p>
                     <div class="pokemon-img">

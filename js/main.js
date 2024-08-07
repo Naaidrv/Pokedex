@@ -96,22 +96,29 @@ botonesHeader.forEach(boton => boton.addEventListener("click", (event) => {
             })
     }
 }));
-
 const searchBar = document.querySelector("#searchBar");
+const noResultsMessage = document.querySelector("#noResults");
 
 searchBar.addEventListener("input", function() {
     const searchTerm = searchBar.value.toLowerCase();
     const pokemonCards = document.querySelectorAll(".pokemon");
 
+    let resultsFound = false;
+
     pokemonCards.forEach(card => {
         const pokemonName = card.querySelector(".pokemon-nombre").textContent.toLowerCase();
         if (pokemonName.includes(searchTerm)) {
             card.style.display = "block";
+            resultsFound = true; // Encontró al menos un resultado
         } else {
             card.style.display = "none";
         }
     });
+
+    // Mostrar el mensaje de "no se han encontrado resultados" solo si no se encontraron resultados
+    noResultsMessage.style.display = resultsFound ? "none" : "block";
 });
+
 
 
 const toggleButton = document.querySelector("#toggleMode");
