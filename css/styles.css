@@ -238,6 +238,15 @@ main{
     text-align: center;
 }
 
+.pokemon-tipos .tipo {
+    color: white;
+}
+
+.pokemon-tipos .tipo .material-icons {
+    color: white;
+    font-size: 12px;
+}
+
 .nombre-contenedor {
     display: flex;
     align-items: center;

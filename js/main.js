@@ -40,14 +40,36 @@ for (let i = 1; i <= 151; i++) {
         .then(data => mostrarPokemon(data));
 }
 
+const typeIcons = {
+    bug: 'bug_report',
+    dark: 'dark_mode',
+    dragon: 'whatshot',  // No hay un ícono específico para dragón, puedes elegir el que prefieras
+    electric: 'bolt',
+    fairy: 'star',
+    fighting: 'fitness_center',
+    fire: 'local_fire_department',
+    flying: 'air',
+    ghost: 'ghost',
+    grass: 'eco',
+    ground: 'landscape',
+    ice: 'ac_unit',
+    normal: 'adjust',
+    poison: 'science',
+    psychic: 'psychology',
+    rock: 'terrain',
+    steel: 'build',
+    water: 'water_drop'
+}
+
 function mostrarPokemon(data) {
     let tipos = data.types.map((type) => {
         const tipoClass = `type-${type.type.name}`;
-        console.log(`Tipo: ${type.type.name}, Clase: ${tipoClass}`); // Depuración
-        return `<p class="${tipoClass} tipo">${type.type.name}</p>`;
+        const icon = typeIcons[type.type.name] || '';  // Obtener el nombre del ícono de Material Icons
+
+        // Crear el HTML para el ícono y el nombre del tipo
+        return `<p class="${tipoClass} tipo"><span class="material-icons">${icon}</span> ${type.type.name}</p>`;
     }).join('');
 
-    // Obtener el color principal del primer tipo del Pokémon
     const colorPrincipal = typeColors[data.types[0].type.name];
 
     const div = document.createElement("div");
