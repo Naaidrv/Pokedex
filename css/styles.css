@@ -3,6 +3,7 @@
 :root {
     --clr-black: #1c1c1c;
     --clr-gray: #ececec;
+    --clr-gra: #ffffff;
     --clr-white: #f7f7f7;
 
     --type-normal: #A8A77A8;
@@ -49,6 +50,15 @@
 body.dark-mode {
     background-color: #1a1a1a;
     color: #e0e0e0;
+}
+
+body.dark-mode .pokemon {
+    background-color: #333; /* Cambia este color por el que desees para el modo oscuro */
+    box-shadow: 0 0 3rem -1rem rgba(255, 255, 255, .25); /* Ajusta la sombra si es necesario */
+}
+
+body.dark-mode .pokemon-nombre{
+    color: #fff;
 }
 
 /* Estilos para los tipos de Pokémon en modo oscuro */
@@ -160,10 +170,7 @@ header {
 }
 
 #toggleMode {
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 0.5rem;
-    background-color: var(--clr-gray);
+    background-color: transparent;
     color: #000;
     cursor: pointer;
 }
@@ -206,12 +213,12 @@ main{
 
 .pokemon-id-back {
     position: absolute;
-    top: 1rem;
+    top: 0px;
     left: 50%;
     transform: translateX(-50%);
     font-size: 6rem;
     font-weight: 800;
-    color: var(--clr-gray);
+    color: var(--clr-gra);
     z-index: 1; /* Asegura que el ID esté sobre el fondo de color pero debajo de la imagen */
     opacity: 0.1; /* Añadimos opacidad para que no opaque la imagen */
 }
@@ -240,6 +247,7 @@ main{
 
 .pokemon-tipos .tipo {
     color: white;
+    padding: 8px 12px;
 }
 
 .pokemon-tipos .tipo .material-icons {

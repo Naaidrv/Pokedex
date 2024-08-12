@@ -150,8 +150,8 @@ toggleButton.addEventListener("click", function() {
     body.classList.toggle("dark-mode");
 
     if (body.classList.contains("dark-mode")) {
-        toggleButton.textContent = "Modo Claro";
+        toggleButton.innerHTML = '<span class="material-icons" style="color:yellow;">light_mode</span>';  // Cambia a ícono de sol
     } else {
-        toggleButton.textContent = "Modo Oscuro";
+        toggleButton.innerHTML = '<span class="material-icons">dark_mode</span>'; // Cambia a ícono de luna
     }
 });
