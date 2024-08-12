@@ -1,6 +1,7 @@
-const listaPokemon = document.querySelector("#listaPokemon");
 const botonesHeader = document.querySelectorAll(".btn-header");
-let URL = "https://pokeapi.co/api/v2/pokemon/";
+const listaPokemon = document.querySelector("#listaPokemon");
+const URL = "https://pokeapi.co/api/v2/pokemon/";
+
 
 // Definimos los colores asociados a cada tipo de Pokémon
 const typeColors = {
@@ -96,7 +97,6 @@ function mostrarPokemon(data) {
     listaPokemon.append(div);
 }
 
-
 // Función para los botones de filtrado
 botonesHeader.forEach(boton => boton.addEventListener("click", (event) => {
     const botonId = event.currentTarget.id.replace('ver-', '');
@@ -140,8 +140,6 @@ searchBar.addEventListener("input", function() {
     // Mostrar el mensaje de "no se han encontrado resultados" solo si no se encontraron resultados
     noResultsMessage.style.display = resultsFound ? "none" : "block";
 });
-
-
 
 const toggleButton = document.querySelector("#toggleMode");
 const body = document.body;
