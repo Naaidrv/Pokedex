@@ -50,7 +50,7 @@ const typeIcons = {
     fighting: 'fitness_center',
     fire: 'local_fire_department',
     flying: 'air',
-    ghost: 'ghost',
+    ghost: 'skull',
     grass: 'eco',
     ground: 'landscape',
     ice: 'ac_unit',
