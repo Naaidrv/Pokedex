@@ -79,7 +79,7 @@ function mostrarPokemon(data) {
     <div class="pokemon-background" style="background-color: ${colorPrincipal};"></div>
     <p class="pokemon-id-back">#${data.id}</p>
     <div class="pokemon-img">
-        <img src="${data.sprites.other["official-artwork"].front_default}" alt="">
+        <img src="${data.sprites.other["home"].front_default}" alt="">
     </div>
     <div class="pokemon-info">
         <div class="nombre-contenedor">
@@ -89,8 +89,8 @@ function mostrarPokemon(data) {
             ${tipos}
         </div>
         <div class="pokemon-stats">
-            <p class="stat">${data.height}M</p>
-            <p class="stat">${data.weight}KG</p>
+            <p class="stat">${data.height * 10}CM</p>
+            <p class="stat">${data.weight / 10}KG</p>
         </div>
     </div>`;
 
